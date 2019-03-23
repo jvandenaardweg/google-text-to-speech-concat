@@ -10,6 +10,8 @@ All of this is handled by this package.
 - Send and process the SSML using the Google Cloud Text to Speech API.
 - Returns one single buffer to be processed into an audiofile or further processing.
 
+**Important:** it currently only handles `MP3` processing. Processing of `LINEAR16` and `OGG_OPUS` does not work yet. Feel free to send a PR.
+
 ## Requirements
 - Google's NodeJS Text To Speech client: https://github.com/googleapis/nodejs-text-to-speech
 
