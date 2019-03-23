@@ -1,9 +1,5 @@
 import TextToSpeech, { SynthesizeSpeechRequest } from '@google-cloud/text-to-speech';
 import pollySsmlSplit from 'polly-ssml-split';
-import fsExtra from 'fs-extra';
-import path from 'path';
-
-import { getGoogleCloudCredentials } from './utils/credentials';
 
 const CHARACTER_LIMIT = 5000; // https://cloud.google.com/text-to-speech/quotas
 

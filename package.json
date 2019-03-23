@@ -6,6 +6,7 @@
   "scripts": {
     "build": "npx tsc",
     "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' --transpile-only src/index.ts",
+    "example": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' --transpile-only src/example.ts",
     "test": "jest --silent",
     "test:watch": "jest --watch --silent",
     "upgrade-interactive": "npm-check --update"
@@ -38,10 +39,7 @@
     "@types/dotenv": "^6.1.0",
     "@types/fs-extra": "^5.0.5",
     "@types/google-cloud__text-to-speech": "^0.5.0",
-    "audio-lena": "^2.1.1",
     "dotenv": "^7.0.0",
-    "fs-extra": "^7.0.1",
-    "ogg.js": "^0.1.0",
     "polly-ssml-split": "^0.1.0"
   },
   "devDependencies": {
