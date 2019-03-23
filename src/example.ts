@@ -1,5 +1,5 @@
 import textToSpeech, { SynthesizeSpeechRequest } from '@google-cloud/text-to-speech';
-import { synthesizeMultipleSpeech } from './index';
+import { synthesize } from './index';
 import fs from 'fs';
 import path from 'path';
 
@@ -40,7 +40,7 @@ import path from 'path';
     });
 
     // Synthesize the text, resulting in an audio buffer
-    const buffer = await synthesizeMultipleSpeech(textToSpeechClient, request);
+    const buffer = await synthesize(textToSpeechClient, request);
 
     // Handle the buffer
     // For example write it to a file or directly upload it to storage, like S3 or Google Cloud Storage

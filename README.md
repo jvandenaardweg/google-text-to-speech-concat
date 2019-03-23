@@ -20,11 +20,11 @@ All of this is handled by this package.
 
 2. Make sure you already have setup the [NodeJS Text To Speech client](https://github.com/googleapis/nodejs-text-to-speech).
 
-3. Use the `synthesizeMultipleSpeech` method to process your SSML. Pass in your Text To Speech client as the first parameter.
+3. Use the `synthesize` method to process your SSML. Pass in your Text To Speech client as the first parameter.
 
 ```javascript
 import textToSpeech from '@google-cloud/text-to-speech';
-import { synthesizeMultipleSpeech } from 'google-cloud-text-to-speech-concat';
+import { synthesize } from 'google-cloud-text-to-speech-concat';
 import fs from 'fs';
 import path from 'path';
 
@@ -64,7 +64,7 @@ import path from 'path';
     });
 
     // Synthesize the text, resulting in an audio buffer
-    const buffer = await synthesizeMultipleSpeech(textToSpeechClient, request);
+    const buffer = await synthesize(textToSpeechClient, request);
 
     // Handle the buffer
     // For example write it to a file or directly upload it to storage, like S3 or Google Cloud Storage
