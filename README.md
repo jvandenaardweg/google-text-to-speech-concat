@@ -1,16 +1,30 @@
 # Google Text To Speech Concat
-Automatically split large text into parts Google's Text To Speech API can consume, and concatenate the audio into one single audiofile.
+Automatically split large text into parts Google's Text To Speech API can consume, and concatenate the resulting audio into one single buffer.
 
 Google's Text To Speech API has a [5.000 character limit](https://cloud.google.com/text-to-speech/quotas). So, if you want to synthesize large text's, you have to manually split the text, do multiple requests to the API and concatenate the resulting audio into one audiofile.
 
+All of this is handled by this package.
 
-All of that is handled by this package.
+## Features
+- Automatically split the SSML using the 5.000 character limit.
+- Send and process the SSML using the Google Cloud Text to Speech API.
+- Returns one single buffer to be processed into an audiofile or further processing.
+
+## Requirements
+- Google's NodeJS Text To Speech client: https://github.com/googleapis/nodejs-text-to-speech
 
 ## Example
+1. Install using npm: `npm install google-text-to-speech-concat --save`
+
+2. Make sure you already have setup the [NodeJS Text To Speech client](https://github.com/googleapis/nodejs-text-to-speech).
+
+3. Use the `synthesizeMultipleSpeech` method to process your SSML. Pass in your Text To Speech client as the first parameter.
 
 ```javascript
-import { synthesizeMultipleSpeech } from 'google-text-to-speech-concat';
-import fsExtra from 'fs-extra';
+import textToSpeech from '@google-cloud/text-to-speech';
+import { synthesizeMultipleSpeech } from 'google-cloud-text-to-speech-concat';
+import fs from 'fs';
+import path from 'path';
 
 (async () => {
 
@@ -35,17 +49,28 @@ import fsExtra from 'fs-extra';
   };
 
   try {
-    const outputFile = path.join(__dirname, '../example-output/lorem-ipsum.mp3');
 
-    const buffer = await synthesizeMultipleSpeech(request, outputFile);
+    // Create your text to speech client using NodeJS library: @google-cloud/text-to-speech
+    const textToSpeechClient = new textToSpeech.TextToSpeechClient({
+      projectId: 'medium-audio',
+      keyFilename: '../google-cloud-credentials.json'
+    });
+
+    // Synthesize the text, resulting in an audio buffer
+    const buffer = await synthesizeMultipleSpeech(textToSpeechClient, request);
 
     // Handle the buffer. For example write it to a file or directly upload it to storage, like S3 or Google Cloud Storage
-    await fsExtra.writeFile(outputFile, buffer, 'binary');
 
-    console.log('Got audio!', outputFile);
+    // Write the file
+    const outputFile = path.join(__dirname, '../example-output/lorem-ipsum.mp3');
+    fs.writeFile(outputFile, buffer, 'binary', (err) => {
+      if (err) throw err;
+      console.log('Got audio!', outputFile);
+    });
   } catch (err) {
     console.log(err);
   }
 
 })();
+
 ```
