@@ -55,19 +55,20 @@ import path from 'path';
 
   try {
 
-    // Create your text to speech client using NodeJS library: @google-cloud/text-to-speech
+    // Create your Text To Speech client
+    // More on that here: https://cloud.google.com/docs/authentication/production#providing_credentials_to_your_application
     const textToSpeechClient = new textToSpeech.TextToSpeechClient({
-      projectId: 'medium-audio',
-      keyFilename: '../google-cloud-credentials.json'
+      keyFilename: path.join(__dirname, '../google-cloud-credentials.json')
     });
 
     // Synthesize the text, resulting in an audio buffer
     const buffer = await synthesizeMultipleSpeech(textToSpeechClient, request);
 
-    // Handle the buffer. For example write it to a file or directly upload it to storage, like S3 or Google Cloud Storage
+    // Handle the buffer
+    // For example write it to a file or directly upload it to storage, like S3 or Google Cloud Storage
+    const outputFile = path.join(__dirname, '../example-output/lorem-ipsum.mp3');
 
     // Write the file
-    const outputFile = path.join(__dirname, '../example-output/lorem-ipsum.mp3');
     fs.writeFile(outputFile, buffer, 'binary', (err) => {
       if (err) throw err;
       console.log('Got audio!', outputFile);
