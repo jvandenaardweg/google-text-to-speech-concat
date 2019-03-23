@@ -57,18 +57,18 @@ exports.synthesizeSpeechPromise = function (textToSpeechClient, ssmlPart, userRe
         var request = __assign({}, userRequestOptions, { input: {
                 ssml: ssmlPart
             } });
-        console.log('Doing synthesizeSpeech...');
+        // console.log('Doing synthesizeSpeech...');
         return textToSpeechClient.synthesizeSpeech(request, function (err, response) {
             if (err)
                 return reject(err);
             if (!(response.audioContent instanceof Buffer))
                 return reject(new Error('Response from Google Text-to-Speech API is not a Buffer.'));
-            console.log('Got audioContent!');
+            // console.log('Got audioContent!');
             return resolve(response.audioContent);
         });
     });
 };
-exports.synthesizeMultipleSpeech = function (textToSpeechClient, userRequestOptions) {
+exports.synthesize = function (textToSpeechClient, userRequestOptions) {
     return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
         var buffer, ssmlParts, synthesizeSpeechPromises, allAudioBuffers, err_1;
         return __generator(this, function (_a) {

@@ -66,7 +66,7 @@ var path_1 = __importDefault(require("path"));
                 textToSpeechClient = new text_to_speech_1.default.TextToSpeechClient({
                     keyFilename: path_1.default.join(__dirname, '../google-cloud-credentials.json')
                 });
-                return [4 /*yield*/, index_1.synthesizeMultipleSpeech(textToSpeechClient, request)];
+                return [4 /*yield*/, index_1.synthesize(textToSpeechClient, request)];
             case 2:
                 buffer = _a.sent();
                 outputFile_1 = path_1.default.join(__dirname, '../example-output/lorem-ipsum.mp3');

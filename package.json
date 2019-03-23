@@ -1,6 +1,6 @@
 {
   "name": "google-text-to-speech-concat",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Automatically split large text into parts Google's Text To Speech API can consume, and concatenated the audio into one single audiofile.",
   "main": "dist/index.js",
   "scripts": {
