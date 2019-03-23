@@ -1,0 +1,54 @@
+{
+  "name": "google-text-to-speech-concat",
+  "version": "0.1.0",
+  "description": "Automatically split large text into parts Google's Text To Speech API can consume, and concatenated the audio into one single audiofile.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' --transpile-only src/index.ts",
+    "test": "jest --silent",
+    "test:watch": "jest --watch --silent",
+    "upgrade-interactive": "npm-check --update"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jvandenaardweg/google-text-to-speech-concat.git"
+  },
+  "keywords": [
+    "google",
+    "text to speech",
+    "text-to-speech",
+    "text to speech api",
+    "text-to-speech api",
+    "cloud",
+    "google cloud",
+    "concat",
+    "concatenation",
+    "split",
+    "ssml"
+  ],
+  "author": "Jordy van den Aardweg <jordyvandenaardweg@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jvandenaardweg/google-text-to-speech-concat/issues"
+  },
+  "homepage": "https://github.com/jvandenaardweg/google-text-to-speech-concat#readme",
+  "dependencies": {
+    "@google-cloud/text-to-speech": "^0.5.1",
+    "@types/dotenv": "^6.1.0",
+    "@types/fs-extra": "^5.0.5",
+    "@types/google-cloud__text-to-speech": "^0.5.0",
+    "audio-lena": "^2.1.1",
+    "dotenv": "^7.0.0",
+    "fs-extra": "^7.0.1",
+    "ogg.js": "^0.1.0",
+    "polly-ssml-split": "^0.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10",
+    "ts-node": "^8.0.3",
+    "tslint": "^5.14.0",
+    "tslint-config-airbnb": "^5.11.1",
+    "typescript": "^3.3.4000"
+  }
+}
