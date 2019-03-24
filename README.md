@@ -82,3 +82,12 @@ import path from 'path';
 })();
 
 ```
+
+# Contribute?
+1. Fork the project.
+2. Generate a Google Cloud Credentials json file here: https://console.cloud.google.com/apis/credentials
+3. Create `google-cloud-credentials.json` in the root of the project and include your credentials from step 2. This file is in the `.gitignore`, so it won't be pushed.
+4. Run `npm run example` to run the example. It should generate an audiofile in `./example-output`.
+5. Do your changes, fix a bug or add a new feature.
+6. Build the Typescript files to JS files: `npm run build`
+6. Create a PR using your fork.
