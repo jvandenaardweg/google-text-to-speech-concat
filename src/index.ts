@@ -17,14 +17,11 @@ export const synthesizeSpeechPromise = (textToSpeechClient: any, ssmlPart: strin
       }
     };
 
-    // console.log('Doing synthesizeSpeech...');
-
     return textToSpeechClient.synthesizeSpeech(request, (err: any, response: SynthesizeSpeechResponse) => {
       if (err) return reject(err);
 
       if (!(response.audioContent instanceof Buffer)) return reject(new Error('Response from Google Text-to-Speech API is not a Buffer.'));
 
-      // console.log('Got audioContent!');
       return resolve(response.audioContent);
     });
   });
@@ -50,8 +47,6 @@ export const synthesize = (textToSpeechClient: any, userRequestOptions: Synthesi
       // Split the SSML into multiple parts with the Text to Speech character limit
       const ssmlParts = splitSsml(userRequestOptions.input['ssml']);
 
-      // console.log('SSML Parts to process:', ssmlParts.length);
-
       // Do parallel requests to the API for each SSML part
       const synthesizeSpeechPromises = ssmlParts.map(ssmlPart => synthesizeSpeechPromise(textToSpeechClient, ssmlPart, userRequestOptions));
 
@@ -59,12 +54,9 @@ export const synthesize = (textToSpeechClient: any, userRequestOptions: Synthesi
       // We end up with an array of Buffer's
       const allAudioBuffers = await Promise.all(synthesizeSpeechPromises);
 
-      // console.log('All promises resolved.');
-
       if (userRequestOptions.audioConfig.audioEncoding === 'MP3') {
         // Concatenate the buffers into one buffer
         buffer = Buffer.concat(allAudioBuffers, allAudioBuffers.reduce((len, a) => len + a.length, 0));
-        // console.log('Concatenated the buffer.');
       }
 
       resolve(buffer);
